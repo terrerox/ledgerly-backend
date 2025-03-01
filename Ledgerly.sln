@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ledgerly", "src\Ledgerly\Ledgerly.csproj", "{F9EABC99-3348-4CDF-ABBE-AD1FC9986108}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{9C0C29F4-3C37-4DE5-9FF4-46B1B3488EE1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9EABC99-3348-4CDF-ABBE-AD1FC9986108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EABC99-3348-4CDF-ABBE-AD1FC9986108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EABC99-3348-4CDF-ABBE-AD1FC9986108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EABC99-3348-4CDF-ABBE-AD1FC9986108}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
