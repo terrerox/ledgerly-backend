@@ -45,8 +45,9 @@ jobs:
       - name: 🔑 Login to Amazon ECR
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.REPOSITORY }}
 
-      - name: 📦 Publish Docker Image to Amazon ECR
-        working-directory: ./src/Ledgerly
+      - name: 📦 Build and Push Docker Image
+        working-directory: ./src
         run: |
-          dotnet publish -c Release -p:ContainerRepository=${{ secrets.REPOSITORY }} -p:RuntimeIdentifier=linux-x64
-          docker push ${{ secrets.REPOSITORY }} --all-tags
+          docker build -f Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest .
+          docker image ls
+          docker push --all-tags ${{ secrets.REPOSITORY }}
