@@ -1,0 +1,24 @@
+name: Deploy 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛠️ Checkout Repository
+        uses: actions/checkout@v4
+      - name: ⚙️ Setup .NET 9 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: 📦 Restore Dependencies
+        run: dotnet restore ./src/Ledgerly/Ledgerly.csproj
+      - name: 🏗️ Build Project
+        run: dotnet build ./src/Ledgerly/Ledgerly.csproj --no-restore
+      - name: ✅ Run Tests
+        run: dotnet test ./src/Ledgerly/Ledgerly.csproj --no-build --verbosity normal
