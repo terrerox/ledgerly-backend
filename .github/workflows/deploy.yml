@@ -29,12 +29,7 @@ jobs:
     steps:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v4
-
-      - name: ⚙️ Setup .NET 8 SDK
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.x
-
+        
       - name: 🔐 Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -48,6 +43,6 @@ jobs:
       - name: 📦 Build and Push Docker Image
         working-directory: ./src
         run: |
-          docker build -f Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest ./src
+          docker build -f Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest ./Ledgerly
           docker image ls
           docker push --all-tags ${{ secrets.REPOSITORY }}
