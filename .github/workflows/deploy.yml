@@ -48,6 +48,6 @@ jobs:
       - name: 📦 Build and Push Docker Image
         working-directory: ./src
         run: |
-          docker build -f Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest .
+          docker build -f Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest ./src
           docker image ls
           docker push --all-tags ${{ secrets.REPOSITORY }}
