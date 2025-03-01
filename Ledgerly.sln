@@ -2,8 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ledgerly", "src\Ledgerly\Ledgerly.csproj", "{F9EABC99-3348-4CDF-ABBE-AD1FC9986108}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{9C0C29F4-3C37-4DE5-9FF4-46B1B3488EE1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B3A0F81-DB53-4EEE-A6C4-AC33340C4A85}"
 	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject

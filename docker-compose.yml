@@ -1,0 +1,22 @@
+﻿services:
+  ledgerly:
+    image: ledgerly
+    container_name: ledgerly-api
+    build:
+      context: .
+      dockerfile: src/Ledgerly/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - ledgerly-db
+  ledgerly-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ledgerly-db
+    environment:
+      - ACCEPT_EULA=1
+      - SA_PASSWORD=Joan12345
+      - MSSQL_RPC_PORT=135
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
