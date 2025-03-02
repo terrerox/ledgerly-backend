@@ -60,9 +60,7 @@ jobs:
           APP_VERSION: latest
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         run: |
-          # Process template files
-          envsubst < "./devops/Dockerrun.aws.json" > "./devops/Dockerrun.aws.json.tmp"
-          mv "./devops/Dockerrun.aws.json.tmp" "./devops/Dockerrun.aws.json"
+          # envsubst < "./devops/Dockerrun.aws.json" > "Dockerrun.aws.json"
           # Upload configuration files to S3
           aws s3 cp ./devops/Dockerrun.aws.json s3://$AWS_S3_BUCKET/Dockerrun.aws.json
           
