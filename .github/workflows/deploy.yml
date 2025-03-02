@@ -49,6 +49,8 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
+      - name: 🛠️ Checkout Repository
+        uses: actions/checkout@v4
       - name: 🚀 Deploy to Elastic Beanstalk
         env:
           APP_NAME: ledgerly
