@@ -51,8 +51,10 @@ jobs:
     steps:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v4
+      - name: 📂 List devops directory
+        run: ls -la ./
       - name: 🛠️ Install gettext
-        run: sudo apt-get update && sudo apt-get install -y gettext
+        run: yum install -y gettext
       - name: 🚀 Deploy to Elastic Beanstalk
         env:
           APP_NAME: ledgerly
