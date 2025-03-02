@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "339713040886.dkr.ecr.us-east-1.amazonaws.com/terrerox/ledgerly:latest"
+    "Name": "${{ secrets.REPOSITORY }}:latest"
   },
   "Ports": [
     {
