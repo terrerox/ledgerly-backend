@@ -62,7 +62,7 @@ jobs:
       - name: 🚀 Deploy to Elastic Beanstalk
         env:
           APP_NAME: ledgerly-api
-          APP_ENV_NAME: production
+          APP_ENV_NAME: development
           APP_VERSION: latest
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           REPOSITORY: ${{ secrets.REPOSITORY }}
