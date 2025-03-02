@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ledgerly.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class TransactionsController(ITransactionService transactionService)
 {
     [HttpGet]
