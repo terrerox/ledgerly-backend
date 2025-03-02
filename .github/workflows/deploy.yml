@@ -42,7 +42,7 @@ jobs:
 
       - name: 📦 Build and Push Docker Image
         run: |
-          docker build -f ./src/Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest .
+          docker build -f ./src/Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:${{ github.sha }} .
           docker image ls
           docker push --all-tags ${{ secrets.REPOSITORY }}
   deploy:
@@ -63,7 +63,7 @@ jobs:
         env:
           APP_NAME: ledgerly-api
           APP_ENV_NAME: development
-          APP_VERSION: latest
+          APP_VERSION: ${{ github.sha }}
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           REPOSITORY: ${{ secrets.REPOSITORY }}
         run: |
