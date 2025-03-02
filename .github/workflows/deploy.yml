@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: amazonlinux:2
+    runs-on: ubuntu-latest
     steps:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
   publish:
     needs: build
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    runs-on: amazonlinux:2
+    runs-on: ubuntu-latest
     steps:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v4
@@ -47,12 +47,12 @@ jobs:
           docker push --all-tags ${{ secrets.REPOSITORY }}
   deploy:
     needs: publish
-    runs-on: amazonlinux:2
+    runs-on: ubuntu-latest
     steps:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v4
       - name: 🛠️ Install gettext
-        run: sudo yum install -y gettext
+        run: sudo apt-get update && sudo apt-get install -y gettext
       - name: 🚀 Deploy to Elastic Beanstalk
         env:
           APP_NAME: ledgerly
@@ -61,9 +61,10 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         run: |
           # Process template files
-          envsubst < ./devops/Dockerrun.aws.json > ./Dockerrun.aws.json
+          envsubst < ./devops/Dockerrun.aws.json > ./devops/Dockerrun.aws.json.tmp
+          mv ./devops/Dockerrun.aws.json.tmp ./devops/Dockerrun.aws.json
           # Upload configuration files to S3
-          aws s3 cp ./Dockerrun.aws.json s3://$AWS_S3_BUCKET/Dockerrun.aws.json
+          aws s3 cp ./devops/Dockerrun.aws.json s3://$AWS_S3_BUCKET/Dockerrun.aws.json
           
           # Create and update Elastic Beanstalk application
           aws elasticbeanstalk create-application-version \
