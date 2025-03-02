@@ -64,7 +64,7 @@ jobs:
           # Process template files
           envsubst < ./devops/Dockerrun.aws.json > ./Dockerrun.aws.json
           # Upload configuration files to S3
-          aws s3 cp ./Dockerrun.aws.json s3://${AWS_S3_BUCKET}/Dockerrun.aws.json
+          aws s3 cp ./devops/Dockerrun.aws.json s3://elasticbeanstalk-us-east-1-339713040886/Dockerrun.aws.json
           
           # Create and update Elastic Beanstalk application
           aws elasticbeanstalk create-application-version \
