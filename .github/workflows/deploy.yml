@@ -45,3 +45,39 @@ jobs:
           docker build -f ./src/Ledgerly/Dockerfile -t ${{ secrets.REPOSITORY }} -t ${{ secrets.REPOSITORY }}:latest .
           docker image ls
           docker push --all-tags ${{ secrets.REPOSITORY }}
+  deploy:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚀 Deploy to Elastic Beanstalk
+        env:
+          APP_NAME: ledgerly
+          APP_ENV_NAME: production
+          APP_VERSION: latest
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        run: |
+          # Process template files
+          envsubst < devops/Dockerrun.aws.json > Dockerrun.aws.json
+          # Upload configuration files to S3
+          aws s3 cp Dockerrun.aws.json s3://$AWS_S3_BUCKET/Dockerrun.aws.json
+          
+          # Create and update Elastic Beanstalk application
+          aws elasticbeanstalk create-application-version \
+            --application-name "$APP_NAME" \
+            --version-label $APP_VERSION \
+            --source-bundle S3Bucket=$AWS_S3_BUCKET,S3Key=Dockerrun.aws.json
+            
+          aws elasticbeanstalk update-environment \
+            --application-name "$APP_NAME" \
+            --version-label $APP_VERSION \
+            --environment-name $APP_ENV_NAME
+            
+          # Wait for deployment to complete
+          aws elasticbeanstalk wait environment-updated \
+            --application-name "$APP_NAME" \
+            --version-label $APP_VERSION \
+            --environment-name $APP_ENV_NAME
+      
+      - name: 🔍 Verify Deployment
+        run: |
+          curl ${{ secrets.APP_URL }}/swagger/v1/swagger.json
