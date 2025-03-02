@@ -61,10 +61,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y gettext
       - name: 🚀 Deploy to Elastic Beanstalk
         env:
-          APP_NAME: ledgerly
+          APP_NAME: ledgerly-api
           APP_ENV_NAME: production
           APP_VERSION: latest
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          REPOSITORY: ${{ secrets.REPOSITORY }}
         run: |
           echo "AWS_REGION=${AWS_S3_BUCKET}"
           # Process template files
