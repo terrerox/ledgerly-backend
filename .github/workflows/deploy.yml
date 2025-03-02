@@ -67,7 +67,6 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           REPOSITORY: ${{ secrets.REPOSITORY }}
         run: |
-          echo "AWS_REGION=${AWS_S3_BUCKET}"
           # Process template files
           envsubst < ./devops/Dockerrun.aws.json > ./Dockerrun.aws.json
           # Upload configuration files to S3
