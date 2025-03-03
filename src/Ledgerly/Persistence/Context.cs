@@ -3,12 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ledgerly.Persistence;
 
-public class Context(IConfiguration configuration) : DbContext
+public class Context(DbContextOptions<Context> options) : DbContext(options)
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-        options.UseSqlServer(configuration.GetConnectionString("ledgerly"));
-    }
-
     public DbSet<Transaction> Transactions { get; set; }
 }

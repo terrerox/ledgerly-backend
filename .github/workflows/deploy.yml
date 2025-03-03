@@ -21,7 +21,7 @@ jobs:
       - name: 🏗️ Build Project
         run: dotnet build ./src/Ledgerly/Ledgerly.csproj --no-restore
       - name: ✅ Run Tests
-        run: dotnet test ./src/Ledgerly/Ledgerly.csproj --no-build --verbosity normal
+        run: dotnet test ./src/Ledgerly.Tests/Ledgerly.Tests.csproj --no-build --verbosity normal
   publish:
     needs: build
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
