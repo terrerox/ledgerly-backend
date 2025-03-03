@@ -21,6 +21,7 @@ This project is a basic financial transaction tracking system built with a React
    - Integrated with the backend using Fetch for API calls.
 
 ## Challenges
+- Initially, I tried to deploy the frontend to Vercel. However, Vercel provides an HTTPS URL while my API was hosted on HTTP in Elastic Beanstalk, which caused issues with API requests due to mixed content restrictions. The alternatives were to purchase a domain and set up a load balancer with proper credentials, but I determined it would be less work to deploy the frontend to Elastic Beanstalk as well, which is the approach I ultimately took.
 - Designing flexible filtering logic on the backend to handle multiple query parameters.
 - Ensuring seamless communication between the React frontend and the .NET API.
 - Managing state in React effectively while handling asynchronous API calls.
