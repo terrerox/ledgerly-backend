@@ -19,9 +19,7 @@ jobs:
       - name: 📦 Restore Dependencies
         run: dotnet restore ./src/Ledgerly/Ledgerly.csproj
       - name: 🏗️ Build Project
-        run: |
-          dotnet build ./src/Ledgerly/Ledgerly.csproj --no-restore
-          dotnet build ./tests/Ledgerly.Tests/Ledgerly.Tests.csproj --no-restore
+        run: dotnet build ./src/Ledgerly/Ledgerly.csproj --no-restore
       - name: ✅ Run Tests
         run: dotnet test ./tests/Ledgerly.Tests/Ledgerly.Tests.csproj --no-build --verbosity normal
   publish:
