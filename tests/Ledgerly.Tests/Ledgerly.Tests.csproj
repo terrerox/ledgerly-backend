@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\Ledgerly\Ledgerly.csproj" />
+      <ProjectReference Include="..\..\src\Ledgerly\Ledgerly.csproj" />
     </ItemGroup>
 
 </Project>
