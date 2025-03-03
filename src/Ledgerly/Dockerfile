@@ -8,6 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Ledgerly/Ledgerly.csproj", "src/Ledgerly/"]
+COPY ["src/Ledgerly.Tests/Ledgerly.Tests.csproj", "src/Ledgerly.Tests/"]
 RUN dotnet restore "src/Ledgerly/Ledgerly.csproj"
 COPY . .
 WORKDIR "/src/src/Ledgerly"
